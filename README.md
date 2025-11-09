@@ -37,7 +37,7 @@ Sistem ini memiliki 3 level pengguna dengan hak akses yang berbeda:
 2.  **Database**
     * Buka `phpMyAdmin`.
     * Buat database baru dengan nama `rental_kendaraan`.
-    * Impor file `rental_kendaraan.sql` (Anda harus mengekspor database Anda ke file ini) ke dalam database yang baru Anda buat.
+    * Impor file `rental_kendaraan.sql` 
 
 3.  **Koneksi**
     * Buka file `config.php`.
