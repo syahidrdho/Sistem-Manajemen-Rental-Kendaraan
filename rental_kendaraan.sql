@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Nov 2025 pada 06.12
+-- Waktu pembuatan: 21 Nov 2025 pada 15.41
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -44,7 +44,7 @@ INSERT INTO `kendaraan` (`id_kendaraan`, `jenis`, `merk`, `no_plat`, `status`, `
 (1, 'Mobil', 'Toyota Avanza', 'B 1234 ABC', 'disewa', NULL),
 (2, 'Mobil', 'Honda Brio', 'D 5679 DEF', 'disewa', NULL),
 (3, 'Mobil', 'Mitsubishi Pajero', 'KT 9101 GH', 'disewa', NULL),
-(4, 'Mobil', 'Suzuki Ertiga', 'B 1112 IJK', 'disewa', NULL),
+(4, 'Mobil', 'Suzuki Ertiga', 'B 1112 IJK', 'tersedia', NULL),
 (5, 'Motor', 'Honda Beat', 'DA 1212 JK', 'disewa', NULL),
 (6, 'Motor', 'Yamaha Xsr', 'KT 1497 LO', 'tersedia', NULL),
 (8, 'Motor', 'Vespa', 'B 1781 MOP', 'disewa', NULL),
@@ -57,7 +57,7 @@ INSERT INTO `kendaraan` (`id_kendaraan`, `jenis`, `merk`, `no_plat`, `status`, `
 (15, 'Mobil', 'Toyota Vios', 'KT 5656 MN', 'tersedia', NULL),
 (16, 'Mobil', 'Daihatsu Ayla', 'KT 7878 OP', 'tersedia', NULL),
 (19, 'Mobil', 'Toyota Pajero', 'B 34534', 'tersedia', NULL),
-(23, 'Mobil Tes', 'Tes', 'B 11111 AB', 'tersedia', NULL);
+(24, 'Mobil', 'Toyota Innova', 'KT 7654 AB', 'tersedia', NULL);
 
 -- --------------------------------------------------------
 
@@ -94,7 +94,8 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `alamat`, `no_hp`, `no_ktp`, `d
 (20, 'Jefri Nichol', 'Jln. Jakarta', '628956285246', '4269268951948682748', NULL),
 (21, 'Devin', 'Jln. Balikpapan', '0842-8258-2684', '62492749568992424', NULL),
 (22, 'geo', 'Jln. Surabaya', '0832-7842-6832', '5242985287529252', NULL),
-(23, 'Sasha', 'Jln. Surabaya', '0839-4753-82526', '6249472956992745282', NULL);
+(23, 'Sasha', 'Jln. Surabaya', '0839-4753-82526', '6249472956992745282', NULL),
+(25, 'Lana', 'Jln. Kalimantan', '0874-3865-28472', '62482692579285822958', NULL);
 
 -- --------------------------------------------------------
 
@@ -171,7 +172,8 @@ INSERT INTO `pengembalian` (`id_pengembalian`, `id_sewa`, `tgl_dikembalikan`, `d
 (14, 20, '2025-10-22', 0.00, NULL),
 (15, 21, '2025-10-14', 0.00, NULL),
 (17, 23, '2025-10-14', 0.00, NULL),
-(22, 28, '2025-11-06', 1.00, NULL);
+(22, 28, '2025-11-06', 1.00, NULL),
+(24, 29, '2025-11-10', 0.00, NULL);
 
 -- --------------------------------------------------------
 
@@ -205,7 +207,8 @@ INSERT INTO `transaksi_sewa` (`id_sewa`, `id_pelanggan`, `id_kendaraan`, `tgl_se
 (21, 12, 16, '2025-10-10', '2025-10-14', 150000.00, NULL),
 (23, 14, 12, '2025-10-11', '2025-10-14', 300000.00, NULL),
 (28, 23, 6, '2025-11-06', '2025-11-08', 100000.00, NULL),
-(29, 22, 4, '2025-11-06', '2025-11-08', 100000.00, NULL);
+(29, 22, 4, '2025-11-06', '2025-11-08', 100000.00, NULL),
+(30, 25, 24, '2025-11-11', '2025-11-15', 300000.00, '2025-11-11 07:08:56');
 
 -- --------------------------------------------------------
 
@@ -226,9 +229,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `nama_lengkap`, `username`, `password`, `role`) VALUES
-(1, 'Edo', 'Edo', '$2y$10$S6Ap.J2jwqjrFxO9H.Lvh.o5qj8d04UEgK24HdTU2vUbefJPlBIx.', 'admin'),
-(2, 'Syahid Ridho', 'Syahid', '$2y$10$j3gK9qAXoHuLteKsPj6UweHiPN9/ocnaPBYHFg84PiY3/jI2acv46', 'karyawan'),
-(3, 'Alexa', 'Alexa', '$2y$10$UbBHtnvdXHXfSgfaqTbfAu3KhODR5zLjjc.54WSb/sN6VUjK70afC', 'manajer');
+(1, 'Edo', 'admin', '$2y$10$S6Ap.J2jwqjrFxO9H.Lvh.o5qj8d04UEgK24HdTU2vUbefJPlBIx.', 'admin'),
+(2, 'Syahid Ridho', 'karyawan', '$2y$10$NK3U46hH5/wHHVnHryRQi.aGSg.GuznVJ0OIw5FsyyRGSJt5cOOV.', 'karyawan'),
+(3, 'Alexa', 'manajer', '$2y$10$j2G2F9ssf6Uu.WTSI0d7De7s1hevJlSvsjtAEPkb76iBxcY1Or73W', 'manajer');
 
 --
 -- Indexes for dumped tables
@@ -292,13 +295,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `kendaraan`
 --
 ALTER TABLE `kendaraan`
-  MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembayaran`
@@ -316,13 +319,13 @@ ALTER TABLE `peminjaman`
 -- AUTO_INCREMENT untuk tabel `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaksi_sewa`
 --
 ALTER TABLE `transaksi_sewa`
-  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
